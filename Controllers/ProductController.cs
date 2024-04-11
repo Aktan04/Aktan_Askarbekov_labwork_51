@@ -54,5 +54,40 @@ public class ProductController : Controller
         }
         return RedirectToAction("Index");
     }
-    
+
+    public IActionResult Details(int id)
+    {
+        List<Product> products = _context.Products.Include(p => p.Category).ToList();
+        products = _context.Products.Include(p => p.Brand).ToList();
+        var product = products.FirstOrDefault(p => p.Id == id);
+        if (product == null)
+        {
+            return NotFound();
+        }
+
+        return View(product);
+    }
+
+    public IActionResult Edit(int id)
+    {
+        var product = _context.Products.Find(id);
+        if (product == null)
+        {
+            return NotFound();
+        }
+        return View(product);
+    }
+
+    [HttpPost]
+    public IActionResult Edit(Product product)
+    {
+        if (product != null)
+        {
+            product.DateOfEditing = DateTime.Now;
+            _context.Update(product);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        return View(product);
+    }
 }
