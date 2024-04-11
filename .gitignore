@@ -6,3 +6,5 @@ riderModule.iml
 .idea
 [Dd]ebug
 StoreDb.db
+StoreDb.db-shm
+StoreDb.db-wal
