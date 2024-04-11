@@ -1,8 +1,34 @@
-@model TModel
+@model Order
 
 @{
-    ViewBag.Title = "title";
+    ViewBag.Title = "Оформление заказа";
     Layout = "_Layout";
 }
 
-<h2>title</h2>
+<div class="container mt-5">
+    <h2>Оформление заказа</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <form asp-action="Create" asp-controller="Order" method="post">
+                <div class="form-group">
+                    <label for="Name">Имя покупателя</label>
+                    <input asp-for="Name" type="text" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="Address">Адрес доставки</label>
+                    <input asp-for="Address" type="text" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="ContactPhone">Номер телефона</label>
+                    <input asp-for="ContactPhone" type="text" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="ProductName">Смартфон:</label>
+                    <input disabled type="text" value="@Model.Product.Name" class="form-control">
+                    <input asp-for="ProductId" type="hidden" value="@Model.Product.Id">
+                </div>
+                <button type="submit" class="btn btn-primary mt-2">Заказать</button>
+            </form>
+        </div>
+    </div>
+</div>
