@@ -45,7 +45,7 @@ public class CategoryController : Controller
         return View(category);
     }
     
-    [HttpDelete]
+    
     public IActionResult Delete(int id)
     {
         var category = _context.Categories.Find(id);

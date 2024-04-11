@@ -45,7 +45,7 @@ public class BrandController : Controller
         return View(brand);
     }
     
-    [HttpDelete]
+    
     public IActionResult Delete(int id)
     {
         var brand = _context.Brands.Find(id);
